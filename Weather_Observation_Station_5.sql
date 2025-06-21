@@ -1,0 +1,18 @@
+-- HackerRank: https://www.hackerrank.com/challenges/weather-observation-station-5/submissions/code/436707603
+SELECT CITY, LEN(CITY) AS NAME_LENGTH
+FROM (
+    SELECT CITY
+    FROM STATION
+    ORDER BY LEN(CITY) ASC, CITY ASC
+    OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
+) AS shortest_city
+
+UNION
+
+SELECT CITY, LEN(CITY) AS NAME_LENGTH
+FROM (
+    SELECT CITY
+    FROM STATION
+    ORDER BY LEN(CITY) DESC, CITY ASC
+    OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
+) AS longest_city;
